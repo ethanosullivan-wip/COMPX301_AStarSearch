@@ -1,0 +1,14 @@
+0,0
+-1,-1
+3.14,1.59
+1.999999999999,2.7182818284590452353602874713527
+ 2 ,      3  
+definitely,correct_input
+oh yes you can trust me, I would never trick you
+ , 
+\,[]
+note to self, putting nothing between commas returns nothing when using split()
+also interestingly in line 4 the 1.9999999999 seems to be parsed to a whole(er) number?,I was not expecting that.
+errors actually start occurring from 6 decimal places (1.999999), where it starts producing results off by 0.00001 after multiplying by 100.
+8 or more dp, seems to cause it to round to 2.0
+38.56 causes an error too, of 0.0002.
