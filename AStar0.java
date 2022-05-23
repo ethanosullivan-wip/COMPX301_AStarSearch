@@ -9,7 +9,7 @@ import java.util.*;
 class AStar0 {
 	
 	public static void main(String[] args) {
-		
+		//kevin kim 1592254
 		//Check we have (correct) input
 		if ( args.length != 4 ) {
 			System.err.println("Incorrect input. Usage: java AStar [filename] [start_index] [end_index] [maximum_step_distance]");
