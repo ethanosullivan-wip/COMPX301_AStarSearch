@@ -200,8 +200,18 @@ class AStar0 {
 		frontier = new PriorityQueue<Node>();
 		
 		//Put the startnode on the frontier
+		frontier.add(stars.get(start_node));
 		
 		
+		//Loop until we've found end_node
+			//Remove top node from list ("currentNode")
+			//Search the array for nodes connected to this, add any that are to frontier (BUT NOT UNTIL WE'VE CALCULATED SOME STUFF (i think))
+			//Get currentNode's G value
+			//Add this to the distance we found for the neighbouring nodes to calculate their G value
+			//(save their gvalue, Node class should auto-update FValue here)
+			//Save currentNode as all of their p_nodes
+			//Add them to the frontier
+			//repeat
 		
 		
 	}
