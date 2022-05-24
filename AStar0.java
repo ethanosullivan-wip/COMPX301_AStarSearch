@@ -18,8 +18,11 @@ class AStar0 {
 		} //implicit else
 		
 		String filename = args[0];
+		
 		int start_index, end_index;
 		double d;
+		PriorityQueue<Node> frontier; 
+		
 		try {
 			start_index = Integer.parseInt(args[1]);
 			end_index = Integer.parseInt(args[2]);
@@ -182,7 +185,7 @@ class AStar0 {
 			System.out.println("");
 		}
 		*/
-		
+		/*
 		for (int i = 0; i < stars.size(); i++) {
 			System.err.println(stars.get(i).hValue);
 			for ( int j = 0; j < stars.size(); j++ ) {
@@ -191,6 +194,14 @@ class AStar0 {
 			}
 			//System.out.println("");
 		}
+		*/
+		//-----------------------A Star Search-----------------------------
+		
+		frontier = new PriorityQueue<Node>();
+		
+		//Put the startnode on the frontier
+		
+		
 		
 		
 	}
