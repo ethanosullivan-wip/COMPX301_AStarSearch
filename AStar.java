@@ -7,11 +7,12 @@ import java.util.*;
 
 /*Big questions
 	Why does the path it finds go through multiple stars when the D value should be large enough to get there immediately?
+	A: Just because of the bad heuristic I think.
 
   Notes to self:
 	Add a check to see that the requested indexes aren't too large AFTER we've found out how large the inputted number of stars is.
 */
-class AStar0 {
+class AStar {
 	
 	public static void main(String[] args) {
 		//kevin kim 1592254
