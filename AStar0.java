@@ -133,8 +133,6 @@ class AStar0 {
 			e.printStackTrace();
 		}
 		
-		//Suppose we can continue from here now that the input is done
-		
 		//Create a structure to save distances in.
 			//I'm thinking if we do use a 2D array we could save the values twice, since saving something twice isn't that bad for time complexity and having to reorder
 			// parameters before accessing the array later on is (would require an if).
@@ -152,8 +150,8 @@ class AStar0 {
 			dx = stars.get(i).x - stars.get(end_index).x;
 			dy = stars.get(i).y - stars.get(end_index).y;
 			//Calculate euclid distance
-			dist = fast_approx_distance(dx, dy);
-			//dist = Math.sqrt(dx*dx + dy*dy);
+			//dist = fast_approx_distance(dx, dy);
+			dist = Math.sqrt(dx*dx + dy*dy);
 			
 			stars.get(i).hValue = dist;
 			
@@ -164,8 +162,8 @@ class AStar0 {
 					dx = stars.get(i).x - stars.get(j).x;
 					dy = stars.get(i).y - stars.get(j).y;
 					//Calculate euclid distance
-					dist = fast_approx_distance(dx, dy);
-					//dist = Math.sqrt(dx*dx + dy*dy);
+					//dist = fast_approx_distance(dx, dy);
+					dist = Math.sqrt(dx*dx + dy*dy);
 						//Honestly haven't noticed the difference between these for the files we've been given, maybe if there were more stars I'd notice
 					
 					//Check if it's within max_step_distance
@@ -224,6 +222,9 @@ class AStar0 {
 				double neighbArc = distances[currentNode.index][i];		//Distance between currentNode and this neighbour, -1 if no connection
 				//If current node is connected to this node and we've found a better path
 				if ( neighbArc != -1 && currentNeighbour.getGValue() > currentNode.getGValue() ) { 
+					//Debug
+					System.err.println("Putting on the frontier: " + currentNeighbour.index );
+					
 					//Remove one other instance of them already in the frontier, if any (should only ever be one at a time) (Honestly really curious if PriorityQueues automatically changes their position anyway but playing it safe)
 					if ( currentNeighbour.getGValue() != Double.POSITIVE_INFINITY ) 
 						frontier.remove(currentNeighbour);
@@ -243,6 +244,12 @@ class AStar0 {
 				noPath = true;
 				break;
 			}
+			
+			//Debug
+			System.out.println(frontier.peek().index);
+			System.out.println("G Value:" + frontier.peek().getGValue());
+			System.out.println("F Value:" + frontier.peek().fValue);
+			
 			//Remove top node from list (new "currentNode")
 			currentNode = frontier.poll();
 		}	//repeat
