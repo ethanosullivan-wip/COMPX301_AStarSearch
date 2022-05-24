@@ -5,7 +5,12 @@ import java.util.*;
 //Pretty sure IllegalArgumentException is an unchecked exception and doesn't have to be acknowledged or caught by this class.
 // Another reason not to import it is I could just catch it in a general catch block.
 
+/*Big questions
+	Why does the path it finds go through multiple stars when the D value should be large enough to get there immediately?
 
+  Notes to self:
+	Add a check to see that the requested indexes aren't too large AFTER we've found out how large the inputted number of stars is.
+*/
 class AStar0 {
 	
 	public static void main(String[] args) {
@@ -32,7 +37,7 @@ class AStar0 {
 			System.err.println("Error with input indexes or distances. Ensure you input real numbers, and integers for indexes");
 			return;
 		}
-		if ( start_index < 1 || end_index < 1 || d < 0) {
+		if ( start_index < 0 || end_index < 0 || d < 0) {
 			System.err.println("Please input positive numbers");
 			return;
 		}
@@ -50,7 +55,7 @@ class AStar0 {
 			//That means an unsorted ArrayList for now
 			String line = bruh.readLine();
 			String[] values;
-			int lineCount = 1;	//Indexed starting at 1. (this effects stars and error messages so far)
+			int lineCount = 0;	//Indexed starting at 0. (this effects stars and error messages so far)
 			while (line != null) {
 				float x, y;
 				int scaledX, scaledY;
@@ -199,21 +204,62 @@ class AStar0 {
 		
 		frontier = new PriorityQueue<Node>();
 		
-		//Put the startnode on the frontier
-		frontier.add(stars.get(start_node));
+		//Set start_node's G value to 0				This ensures no one chooses to put it into the frontier again
+		stars.get(start_index).setGValue(0);
 		
+		//Put the startnode on the frontier	--Pointless, it's taken off immediately
+		//frontier.add(stars.get(start_node));
+		//"Remove" top node from "frontier" ("currentNode")
+		Node currentNode = stars.get(start_index);
 		
+		//technically don't need the following as we could simply chekc whether currentNode.index == 
+		boolean noPath = false;		//false if a path can be found, set to true when we find out there is none
 		//Loop until we've found end_node
-			//Remove top node from list ("currentNode")
-			//Search the array for nodes connected to this, add any that are to frontier (BUT NOT UNTIL WE'VE CALCULATED SOME STUFF (i think))
-			//Get currentNode's G value
-			//Add this to the distance we found for the neighbouring nodes to calculate their G value
-			//(save their gvalue, Node class should auto-update FValue here)
-			//Save currentNode as all of their p_nodes
-			//Add them to the frontier
-			//repeat
+		while (currentNode.index != end_index) {
+			
+			
+			//Search the array for nodes connected to currentnode, add any that are to frontier (BUT NOT UNTIL WE'VE CALCULATED SOME STUFF (i think))
+			for (int i=0; i < stars.size(); i++) {
+				Node currentNeighbour = stars.get(i);
+				double neighbArc = distances[currentNode.index][i];		//Distance between currentNode and this neighbour, -1 if no connection
+				//If current node is connected to this node and we've found a better path
+				if ( neighbArc != -1 && currentNeighbour.getGValue() > currentNode.getGValue() ) { 
+					//Remove one other instance of them already in the frontier, if any (should only ever be one at a time) (Honestly really curious if PriorityQueues automatically changes their position anyway but playing it safe)
+					if ( currentNeighbour.getGValue() != Double.POSITIVE_INFINITY ) 
+						frontier.remove(currentNeighbour);
+					//Add currentNode's G value to the distance we found for this neighbouring node to calculate its G value
+					currentNeighbour.setGValue( neighbArc + currentNode.getGValue() );	//Node class auto-updates FValue here
+					//Save currentNode as their p[revious]Node;
+					currentNeighbour.pNode = currentNode;
+					//Would also save that they've been visited but now realising that may not be necessary at all
+					//Add to the frontier
+					frontier.add(currentNeighbour);
+				}
+			}
+			
+			//Check there is still a possible path to explore
+			if ( frontier.peek() == null ) {
+				System.out.println("No path found");
+				noPath = true;
+				break;
+			}
+			//Remove top node from list (new "currentNode")
+			currentNode = frontier.poll();
+		}	//repeat
+		//When we leave the loop, either currentNode is the end_node or it is the last node we explored before running out of options
 		
+		//Scale path length back down before announcing it
+		double scaledPath = currentNode.getGValue()  / 100;
 		
+		System.out.println("Shortest path is " + scaledPath + " long and goes through (in reverse order):");
+		Node backtracker = currentNode;
+		int starCount = 0;
+		while ( backtracker != null  && starCount != 6000 ) { //For now putting a wee manual check to see it doesn't get stuck here forever but could use visited property for this.
+			System.out.println("Star number #" + backtracker.index);
+			backtracker = backtracker.pNode;
+			starCount++;
+		}
+		System.out.println("Number of stars travelled to: " + starCount);
 	}
 	
 	/**
