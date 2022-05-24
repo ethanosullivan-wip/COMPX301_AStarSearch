@@ -10,6 +10,7 @@ class AStar0 {
 	
 	public static void main(String[] args) {
 		//kevin kim 1592254
+		//ethan o'sullivan 1539567
 		//Check we have (correct) input
 		if ( args.length != 4 ) {
 			System.err.println("Incorrect input. Usage: java AStar [filename] [start_index] [end_index] [maximum_step_distance]");
@@ -35,7 +36,7 @@ class AStar0 {
 		//Scale d to match the scaling we do to star coordinates later
 		d *= 100;
 		
-		ArrayList<Star> stars = new ArrayList<Star>();	//Stores the inputted stars.
+		ArrayList<Node> stars = new ArrayList<Node>();	//Stores the inputted stars.
 		
 		try {
 			BufferedReader bruh = new BufferedReader(new FileReader(filename));
@@ -104,7 +105,7 @@ class AStar0 {
 				
 				//Can't calculate the heuristic yet since we have to read in the destination star first				
 				
-				Star newStar = new Star(lineCount, scaledX, scaledY);
+				Node newStar = new Node(lineCount, scaledX, scaledY);
 				
 				stars.add(newStar);
 				
@@ -130,12 +131,23 @@ class AStar0 {
 			//I'm thinking if we do use a 2D array we could save the values twice, since saving something twice isn't that bad for time complexity and having to reorder
 			// parameters before accessing the array later on is (would require an if).
 		
-		int[][] distances = new int[stars.size()][stars.size()];
+		double[][] distances = new double[stars.size()][stars.size()];
 		
 		//Calculate and store distances
 		//We know arraylists add to the end of the list so of course the arraylist of stars is still in order thankfully
-		int dx, dy, dist;
+		int dx, dy;
+		double dist;
 		for (int i = 0; i < stars.size(); i++) {
+			
+			//Might as well calculate the heuristic distance in this loop too
+			//get horizontal and vertical distance between this and the goal star
+			dx = stars.get(i).x - stars.get(end_index).x;
+			dy = stars.get(i).y - stars.get(end_index).y;
+			//Calculate euclid distance
+			dist = fast_approx_distance(dx, dy);
+			//dist = Math.sqrt(dx*dx + dy*dy);
+			
+			stars.get(i).hValue = dist;
 			
 			for (int j = 0; j < stars.size(); j++) {
 				//Don't recalculate previously stored distances
@@ -145,7 +157,7 @@ class AStar0 {
 					dy = stars.get(i).y - stars.get(j).y;
 					//Calculate euclid distance
 					dist = fast_approx_distance(dx, dy);
-					//dist = (int)Math.sqrt(dx*dx + dy*dy);
+					//dist = Math.sqrt(dx*dx + dy*dy);
 						//Honestly haven't noticed the difference between these for the files we've been given, maybe if there were more stars I'd notice
 					
 					//Check if it's within max_step_distance
@@ -162,21 +174,24 @@ class AStar0 {
 		}
 		
 		//Debug
+		/*
 		for (int[] innerArray : distances ) {
 			for ( int distance : innerArray ) {
 				System.err.print(distance + " ");
 			}
 			System.out.println("");
 		}
-		/*
+		*/
+		
 		for (int i = 0; i < stars.size(); i++) {
+			System.err.println(stars.get(i).hValue);
 			for ( int j = 0; j < stars.size(); j++ ) {
 				//System.err.print(distance + ", ");
-				System.err.print(i);
+				//System.err.print(i);
 			}
-			System.out.println("");
+			//System.out.println("");
 		}
-		*/
+		
 		
 	}
 	
