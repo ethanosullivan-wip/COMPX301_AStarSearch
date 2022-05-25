@@ -1,3 +1,5 @@
+//Kevin Kim 1592254
+//Ethan O'Sullivan 1539567
 import java.awt.*;
 import javax.swing.JPanel;
 import java.util.*;
