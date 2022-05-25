@@ -25,11 +25,11 @@ public class GUI2 extends JFrame{
 
     public void buildGUI(){
         setLayout(new BorderLayout());
-        Container contentpanel = getContentPane();
+        Container contentpane = getContentPane();
         ResultPanel resultPanel = new ResultPanel();
         //Panel used to draw the graph
 
-        contentpanel.add(resultPanel, BorderLayout.CENTER);
+        contentpane.add(resultPanel, BorderLayout.CENTER);
         
         JPanel p = new JPanel();
         JTextField e1 = new JTextField(3);
@@ -46,7 +46,7 @@ public class GUI2 extends JFrame{
         p.add(e3);
         p.add(button);
 
-        contentpanel.add(p, BorderLayout.SOUTH);
+        contentpane.add(p, BorderLayout.SOUTH);
         button.addActionListener(new DrawingActionListener(e1, e2, e3, resultPanel));
         //working listener for when button is pressed.
     }
@@ -106,7 +106,7 @@ public class GUI2 extends JFrame{
                 int x = Integer.parseInt(e1.getText());
                 int y = Integer.parseInt(e2.getText());
                 int d = Integer.parseInt(e3.getText());
-                //resultPanel.setScore(x,y,d);
+                resultPanel.setValue(x,y,d);
                 resultPanel.repaint();
             }
             catch(NumberFormatException nfe){
