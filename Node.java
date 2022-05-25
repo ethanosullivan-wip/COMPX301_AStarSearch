@@ -1,3 +1,5 @@
+//Kevin Kim 1592254
+//Ethan O'Sullivan 1539567
 /**
 	All unknown h, g and f values are by default positive infinity, fyi
 **/
