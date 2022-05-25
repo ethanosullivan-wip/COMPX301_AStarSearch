@@ -261,7 +261,7 @@ class AStar {
 			if ( frontier.peek() == null ) {
 				System.out.println("No path found");
 				noPath = true;
-				//TestGUI0.popup;
+				gui.popup();
 				break;
 			}
 			

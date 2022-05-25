@@ -33,7 +33,7 @@ public class TestGraphPanel extends JPanel {
 		//this.setMinimumSize(new Dimension(200, 200));
 		
 		this.setSize(new Dimension(500, 400));
-		this.setLocation(new Dimension(100, 100));
+		this.setLocation(100, 100);
 		//Fill in star locations now?
 		
 		
