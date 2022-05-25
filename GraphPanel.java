@@ -17,7 +17,7 @@ public class GraphPanel extends JPanel {
 	
 	public static final int GRAPH_WIDTH = 500;
 	public static final int GRAPH_HEIGHT = 400;
-	public static int star_size = 5;
+	public static int star_size = 6;
 	public static int line_thickness = 4;
 	
 	//	- lines
@@ -88,11 +88,11 @@ public class GraphPanel extends JPanel {
 		
 		
 		for (int i=0; i < dots.size(); i++) {
-			guhuh.fillOval( (int)(dots.get(i).x * scaleFactorX + 10) , GRAPH_HEIGHT - (int)(dots.get(i).y * scaleFactorY + 10) , star_size, star_size);
+			guhuh.fillOval( (int)(dots.get(i).x * scaleFactorX + 10) - 3 , GRAPH_HEIGHT - (int)(dots.get(i).y * scaleFactorY + 10) - 3 , star_size, star_size);
 			
 		}
 		
-		guhuh.setColor(Color.GREEN);
+		guhuh.setColor(new Color(48, 255, 48, 128));
 		guhuh.setStroke(new BasicStroke(line_thickness));
 		
 		for (int i=0; i < lines.size(); i++) {
