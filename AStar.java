@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-=======
 //Kevin Kim 1592254
 //Ethan O'Sullivan 1539567
->>>>>>> 470e70ec53da4b9dd19ad576f912d0a20897e927
+
 import java.io.*;
 import java.util.*;
 import java.awt.Point;
