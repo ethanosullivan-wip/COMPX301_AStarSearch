@@ -15,9 +15,11 @@ public class GraphPanel extends JPanel {
 	
 	Graphics2D guhuh;
 	
-	public static final int STAR_SIZE = 5;
 	public static final int GRAPH_WIDTH = 500;
 	public static final int GRAPH_HEIGHT = 400;
+	public static int star_size = 5;
+	public static int line_thickness = 4;
+	
 	//	- lines
 	//	- final path lines (should they even be separate? yes, but only if we do the during-runtime-display idea)
 	
@@ -38,7 +40,7 @@ public class GraphPanel extends JPanel {
 	}
 	
 	public void setUpPanel() {
-		this.setBackground(Color.CYAN);
+		this.setBackground(new Color(0, 0, 0, 0));
 		this.setVisible(true);
 		//Maybe preset the size of the window/panel? That'd be the frame I want to set
 		//this.setMinimumSize(new Dimension(200, 200));
@@ -86,11 +88,12 @@ public class GraphPanel extends JPanel {
 		
 		
 		for (int i=0; i < dots.size(); i++) {
-			guhuh.fillOval( (int)(dots.get(i).x * scaleFactorX + 10) , GRAPH_HEIGHT - (int)(dots.get(i).y * scaleFactorY + 10) , STAR_SIZE, STAR_SIZE );
+			guhuh.fillOval( (int)(dots.get(i).x * scaleFactorX + 10) , GRAPH_HEIGHT - (int)(dots.get(i).y * scaleFactorY + 10) , star_size, star_size);
 			
 		}
 		
 		guhuh.setColor(Color.GREEN);
+		guhuh.setStroke(new BasicStroke(line_thickness));
 		
 		for (int i=0; i < lines.size(); i++) {
 			guhuh.draw( lines.get(i) );
