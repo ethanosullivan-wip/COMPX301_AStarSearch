@@ -293,15 +293,25 @@ class AStar {
 		//Scale path length back down before announcing it
 		double scaledPath = currentNode.getGValue()  / 100;
 		
+		//For graph dolphin
+		ArrayList<Integer> resultIndexes = new ArrayList<Integer>();
+		
 		System.out.println("Shortest path is " + scaledPath + " long and goes through (in reverse order):");
 		Node backtracker = currentNode;
 		int starCount = 0;
 		while ( backtracker != null  && starCount != 6000 ) { //For now putting a wee manual check to see it doesn't get stuck here forever but could use visited property for this.
+			
+			resultIndexes.add(backtracker.index);
+			
 			System.out.println("Star number #" + backtracker.index);
 			backtracker = backtracker.pNode;
 			starCount++;
 		}
 		System.out.println("Number of stars travelled to: " + starCount);
+		
+		gui.paintPath(resultIndexes);
+		
+		
 	}
 	
 	/**

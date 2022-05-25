@@ -1,6 +1,7 @@
 import java.awt.*;
 import javax.swing.JPanel;
 import java.util.*;
+import java.awt.geom.*;
 
 public class GraphPanel extends JPanel {
 	
@@ -8,6 +9,11 @@ public class GraphPanel extends JPanel {
 	//	- Stars/points
 	ArrayList<Point> dots;
 	double largestX, largestY;
+	double scaleFactorX, scaleFactorY;
+	
+	ArrayList<Line2D> lines;
+	
+	Graphics2D guhuh;
 	
 	public static final int STAR_SIZE = 5;
 	public static final int GRAPH_WIDTH = 500;
@@ -23,6 +29,11 @@ public class GraphPanel extends JPanel {
 		
 		largestX = _largestX;
 		largestY = _largestY;
+		
+		scaleFactorX =  GRAPH_WIDTH / (largestX + 10);
+		scaleFactorY =  GRAPH_HEIGHT / (largestY + 10);
+		
+		lines = new ArrayList<Line2D>();
 		
 	}
 	
@@ -41,6 +52,24 @@ public class GraphPanel extends JPanel {
 		
 	}
 	
+	public void paintPath(ArrayList<Integer> pathPoints) {
+		
+		Line2D newLine;
+		
+		for ( int i = 1; i < pathPoints.size(); i++ ) {
+			double lineX1 = dots.get( pathPoints.get(i) ).x  * scaleFactorX;
+			double lineY1 = dots.get( pathPoints.get(i) ).y * scaleFactorY;
+			double lineX2 = dots.get( pathPoints.get(i-1) ).x * scaleFactorX;
+			double lineY2 = dots.get( pathPoints.get(i-1) ).y * scaleFactorY;
+			
+			newLine = new Line2D.Double( lineX1, lineY1, lineX2, lineY2 );
+			lines.add(newLine);
+		}
+		
+		this.repaint();
+		
+	}
+	
 	@Override
 	protected void paintComponent(Graphics g) {	//pretty sure the system that calls this gives it the graphics object
 		super.paintComponent(g);
@@ -52,20 +81,18 @@ public class GraphPanel extends JPanel {
 		
 		//guhuh.fillOval(x1, y1+200, width, height);
 		
-		double scaleFactorX =  GRAPH_WIDTH / (largestX + 10);
-		double scaleFactorY =  GRAPH_HEIGHT / (largestY + 10);
+		
 		
 		for (int i=0; i < dots.size(); i++) {
 			guhuh.fillOval( (int)(dots.get(i).x * scaleFactorX + 10) , GRAPH_HEIGHT - (int)(dots.get(i).y * scaleFactorY + 10) , STAR_SIZE, STAR_SIZE );
 			
 		}
-		/*
-		for (int i=0; i < dots2.size(); i++) {
-			guhuh.fillOval( dots2.get(i).x, dots2.get(i).y, STAR_SIZE, STAR_SIZE );
-			
-		}
-		*/
 		
+		guhuh.setColor(Color.GREEN);
+		
+		for (int i=0; i < lines.size(); i++) {
+			guhuh.draw( lines.get(i) );
+		}
 	}
 	
 	

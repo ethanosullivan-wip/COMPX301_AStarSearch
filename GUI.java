@@ -7,6 +7,8 @@ import java.util.*;
 
 public class GUI {
 	
+	GraphPanel tgp;
+	
 	public static void main(String[] args) {
 		
 		ArrayList<Point> emptyPoints = new ArrayList<Point>();
@@ -17,6 +19,10 @@ public class GUI {
 
 	public void popup(){
 		JOptionPane.showMessageDialog(null, "There is no path found");
+	}
+	
+	public void paintPath(ArrayList<Integer> pathPoints) {
+		tgp.paintPath(pathPoints);
 	}
 	
 	public GUI(ArrayList<Point> points, double largestX, double largestY) {
@@ -32,7 +38,7 @@ public class GUI {
 		frame.setContentPane(everything);
 		//frame.getContentPane().add()...
 		
-		GraphPanel tgp = new GraphPanel(points, largestX, largestY);
+		tgp = new GraphPanel(points, largestX, largestY);
 		everything.add(tgp);
 		
 		JPanel emptyPanel = new JPanel();
