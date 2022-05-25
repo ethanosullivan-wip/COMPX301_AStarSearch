@@ -1,4 +1,4 @@
-import javax.swing.JOtionPane;
+import javax.swing.JOptionPane;
 import java.awt.*;
 import javax.swing.*;
 import java.util.*;
