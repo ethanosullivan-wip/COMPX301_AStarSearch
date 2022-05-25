@@ -1,3 +1,4 @@
+import javax.swing.JOtionPane;
 import java.awt.*;
 import javax.swing.*;
 
@@ -18,6 +19,10 @@ public class TestGUI0 {
 		TestGraphPanel tgp = new TestGraphPanel();
 		frame.add(tgp);
 		
+	}
+
+	public void popup(){
+		JOtionPane.showMessageDialog(null, "There is no path found");
 	}
 	
 }
