@@ -1,5 +1,3 @@
-//Kevin Kim 1592254
-//Ethan O'Sullivan 1539567
 import javax.swing.JOptionPane;
 import java.awt.*;
 import javax.swing.*;
@@ -29,7 +27,7 @@ public class GUI {
 	public GUI(ArrayList<Point> points, double largestX, double largestY) {
 		JFrame frame = new JFrame("This is my name :)");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800, 600);
+		frame.setSize(1000, 700);
 		
 		//frame.add(new Canvas());
 		

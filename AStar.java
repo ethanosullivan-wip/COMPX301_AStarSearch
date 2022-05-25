@@ -1,5 +1,8 @@
+<<<<<<< HEAD
+=======
 //Kevin Kim 1592254
 //Ethan O'Sullivan 1539567
+>>>>>>> 470e70ec53da4b9dd19ad576f912d0a20897e927
 import java.io.*;
 import java.util.*;
 import java.awt.Point;
@@ -211,7 +214,7 @@ class AStar {
 				//If current node is connected to neighbour node and we've found a better path
 				if ( neighbArc != -1 && currentNeighbour.getGValue() > ( currentNode.getGValue() + neighbArc ) ) { 
 					//Debug
-					//System.err.println("Putting on the frontier: " + currentNeighbour.index );
+					System.err.println("Putting on the frontier: " + currentNeighbour.index );
 					
 					//Remove one other instance of them already in the frontier, if any (should only ever be one at a time) (Honestly really curious if PriorityQueues automatically changes their position anyway but playing it safe)
 					if ( currentNeighbour.getGValue() != Double.POSITIVE_INFINITY ) 
@@ -233,12 +236,12 @@ class AStar {
 				gui.popup();
 				break;
 			}
-			/*
+			
 			//Debug
-			System.out.println("Popping off frontier: " + frontier.peek().index);
+			System.out.println(frontier.peek().index);
 			System.out.println("G Value:" + frontier.peek().getGValue());
 			System.out.println("F Value:" + frontier.peek().fValue);
-			*/
+			
 			//Remove top node from list (new "currentNode")
 			currentNode = frontier.poll();
 		}	//repeat
