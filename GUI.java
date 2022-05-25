@@ -28,7 +28,7 @@ public class GUI {
 	public GUI(ArrayList<Point> points, double largestX, double largestY) {
 		JFrame frame = new JFrame("This is my name :)");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(400, 400);
+		frame.setSize(1000, 700);
 		
 		//frame.add(new Canvas());
 		
