@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import javax.swing.JPanel;
 import java.util.*;
@@ -55,7 +56,7 @@ public class GraphPanel extends JPanel {
 		
 		Line2D newLine;
 		
-		System.err.println("We made it to path print");
+		//System.err.println("We made it to path print");
 		
 		for ( int i = 1; i < pathPoints.size(); i++ ) {
 			double lineX1 = dots.get( pathPoints.get(i) ).x  * scaleFactorX + 10;
