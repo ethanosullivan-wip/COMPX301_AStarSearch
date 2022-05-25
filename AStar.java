@@ -232,7 +232,13 @@ class AStar {
 			//System.out.println("");
 		}
 		*/
+		//-----------------------------------------------------------------
+		//-----------------------------------------------------------------
 		//-----------------------A Star Search-----------------------------
+		//-----------------------------------------------------------------
+		//-----------------------------------------------------------------
+		//-----------------------------------------------------------------
+		//-----------------------------------------------------------------
 		
 		frontier = new PriorityQueue<Node>();
 		
@@ -254,8 +260,8 @@ class AStar {
 			for (int i=0; i < stars.size(); i++) {
 				Node currentNeighbour = stars.get(i);
 				double neighbArc = distances[currentNode.index][i];		//Distance between currentNode and this neighbour, -1 if no connection
-				//If current node is connected to this node and we've found a better path
-				if ( neighbArc != -1 && currentNeighbour.getGValue() > currentNode.getGValue() ) { 
+				//If current node is connected to neighbour node and we've found a better path
+				if ( neighbArc != -1 && currentNeighbour.getGValue() > ( currentNode.getGValue() + neighbArc ) ) { 
 					//Debug
 					System.err.println("Putting on the frontier: " + currentNeighbour.index );
 					
