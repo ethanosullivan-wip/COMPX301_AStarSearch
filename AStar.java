@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+//Kevin Kim 1592254
+//Ethan O'Sullivan 1539567
+>>>>>>> 470e70ec53da4b9dd19ad576f912d0a20897e927
 import java.io.*;
 import java.util.*;
 import java.awt.Point;
@@ -11,8 +16,7 @@ import java.awt.Point;
 class AStar {
 	
 	public static void main(String[] args) {
-		//kevin kim 1592254
-		//ethan o'sullivan 1539567
+		
 		//Check we have (correct) input
 		if ( args.length != 4 ) {
 			System.err.println("Incorrect input. Usage: java AStar [filename] [start_index] [end_index] [maximum_step_distance]");
