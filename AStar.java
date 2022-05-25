@@ -290,6 +290,10 @@ class AStar {
 		}	//repeat
 		//When we leave the loop, either currentNode is the end_node or it is the last node we explored before running out of options
 		
+		if ( noPath ) {
+			return;
+		}
+		
 		//Scale path length back down before announcing it
 		double scaledPath = currentNode.getGValue()  / 100;
 		

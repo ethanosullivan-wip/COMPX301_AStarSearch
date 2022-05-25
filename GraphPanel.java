@@ -56,11 +56,13 @@ public class GraphPanel extends JPanel {
 		
 		Line2D newLine;
 		
+		System.err.println("We made it to path print");
+		
 		for ( int i = 1; i < pathPoints.size(); i++ ) {
-			double lineX1 = dots.get( pathPoints.get(i) ).x  * scaleFactorX;
-			double lineY1 = dots.get( pathPoints.get(i) ).y * scaleFactorY;
-			double lineX2 = dots.get( pathPoints.get(i-1) ).x * scaleFactorX;
-			double lineY2 = dots.get( pathPoints.get(i-1) ).y * scaleFactorY;
+			double lineX1 = dots.get( pathPoints.get(i) ).x  * scaleFactorX + 10;
+			double lineY1 = GRAPH_HEIGHT - ( dots.get( pathPoints.get(i) ).y * scaleFactorY + 10 );
+			double lineX2 = dots.get( pathPoints.get(i-1) ).x * scaleFactorX + 10;
+			double lineY2 = GRAPH_HEIGHT - ( dots.get( pathPoints.get(i-1) ).y * scaleFactorY + 10 );
 			
 			newLine = new Line2D.Double( lineX1, lineY1, lineX2, lineY2 );
 			lines.add(newLine);
