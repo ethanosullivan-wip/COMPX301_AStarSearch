@@ -2,7 +2,7 @@ import java.awt.*;
 import javax.swing.JPanel;
 import java.util.*;
 
-public class TestGraphPanel extends JPanel {
+public class GraphPanel extends JPanel {
 	
 	//What sort of variables/lists do we need?
 	//	- Stars/points
@@ -14,7 +14,7 @@ public class TestGraphPanel extends JPanel {
 	//	- final path lines (should they even be separate? yes, but only if we do the during-runtime-display idea)
 	
 	//When created we could pass it some parameters, maybe star locations
-	public TestGraphPanel(ArrayList<Point> points) {
+	public GraphPanel(ArrayList<Point> points) {
 		setUpPanel();
 		
 		dots = points;
@@ -45,20 +45,6 @@ public class TestGraphPanel extends JPanel {
 		
 		//Apparently the Graphics2D class is a good move?
 		Graphics2D guhuh = (Graphics2D) g;
-		
-		guhuh.setColor(Color.GREEN);
-		
-		int x1 = 50;
-		int y1 = 50;
-		int x2 = 550;
-		int y2 = 150;
-		
-		int width = 100;
-		int height = 100;
-		
-		guhuh.drawLine(x1, y1, x2, y2);
-		
-		guhuh.fillRect(x1+width, y1, width, height);
 		
 		guhuh.setColor(Color.BLACK);
 		

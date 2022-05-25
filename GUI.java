@@ -5,13 +5,13 @@ import java.util.*;
 
 //Remember we've also got to make a pop-up window or something when no path is found
 
-public class TestGUI0 {
+public class GUI {
 	
 	public static void main(String[] args) {
 		
 		ArrayList<Point> emptyPoints = new ArrayList<Point>();
 		
-		TestGUI0 gui = new TestGUI0(emptyPoints);
+		GUI gui = new GUI(emptyPoints);
 		
 	}
 
@@ -19,7 +19,7 @@ public class TestGUI0 {
 		JOptionPane.showMessageDialog(null, "There is no path found");
 	}
 	
-	public TestGUI0(ArrayList<Point> points) {
+	public GUI(ArrayList<Point> points) {
 		JFrame frame = new JFrame("This is my name :)");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400, 400);

@@ -147,7 +147,7 @@ class AStar {
 			dots.add(newPoint);
 		}
 		
-		TestGUI0 gui = new TestGUI0(dots);
+		GUI gui = new GUI(dots);
 		
 		
 		
