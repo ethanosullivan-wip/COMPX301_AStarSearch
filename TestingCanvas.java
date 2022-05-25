@@ -3,8 +3,10 @@ import java.awt.Graphics;
 import java.awt.Canvas;
 import javax.swing.JFrame;
 
-public class TestingCanvas {
-	
+//JPanel for drawing in??
+
+public class TestingCanvas extends Canvas {
+	//uh IDK restarting
 	public static void main(String[] args) {
 		
 		Canvas c = new Canvas();
