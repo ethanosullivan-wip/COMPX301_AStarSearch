@@ -1,3 +1,5 @@
+//Kevin Kim 1592254
+//Ethan O'Sullivan 1539567
 import java.awt.*;
 import javax.swing.JPanel;
 import java.util.*;
@@ -45,7 +47,7 @@ public class GraphPanel extends JPanel {
 		//largestX*1.25, largestY*1.25
 		
 		this.setSize(new Dimension(GRAPH_WIDTH, GRAPH_HEIGHT));
-		this.setLocation(100, 150);
+		this.setLocation(50, 50);
 		//Fill in star locations now?
 		
 		
@@ -54,8 +56,6 @@ public class GraphPanel extends JPanel {
 	public void paintPath(ArrayList<Integer> pathPoints) {
 		
 		Line2D newLine;
-		
-		System.err.println("We made it to path print");
 		
 		for ( int i = 1; i < pathPoints.size(); i++ ) {
 			double lineX1 = dots.get( pathPoints.get(i) ).x  * scaleFactorX + 10;
