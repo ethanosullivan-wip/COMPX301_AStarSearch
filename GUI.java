@@ -42,7 +42,7 @@ public class GUI {
 		everything.add(tgp);
 		
 		JPanel emptyPanel = new JPanel();
-		emptyPanel.setBackground(Color.BLUE);
+		emptyPanel.setBackground(Color.lightGray);
 		emptyPanel.setSize(new Dimension(100, 100));
 		everything.add(emptyPanel);
 		
