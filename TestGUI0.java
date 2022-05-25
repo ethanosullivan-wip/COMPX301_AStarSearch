@@ -1,3 +1,4 @@
+import javax.swing.JOtionPane;
 import java.awt.*;
 import javax.swing.*;
 import java.util.*;
@@ -23,6 +24,10 @@ public class TestGUI0 {
 		
 		frame.setVisible(true);
 		
+	}
+
+	public void popup(){
+		JOtionPane.showMessageDialog(null, "There is no path found");
 	}
 	
 	public TestGUI0(ArrayList<Point> points) {
