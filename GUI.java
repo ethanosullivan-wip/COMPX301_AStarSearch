@@ -3,7 +3,6 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.*;
 
-//Remember we've also got to make a pop-up window or something when no path is found
 
 public class GUI {
 	

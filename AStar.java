@@ -1,4 +1,3 @@
-//I added a comment
 import java.io.*;
 import java.util.*;
 import java.awt.Point;
@@ -6,12 +5,8 @@ import java.awt.Point;
 //Pretty sure IllegalArgumentException is an unchecked exception and doesn't have to be acknowledged or caught by this class.
 // Another reason not to import it is I could just catch it in a general catch block.
 
-/*Big questions
-	Why does the path it finds go through multiple stars when the D value should be large enough to get there immediately?
-	A: Just because of the bad heuristic I think.
+/*
 
-  Notes to self:
-	Add a check to see that the requested indexes aren't too large AFTER we've found out how large the inputted number of stars is.
 */
 class AStar {
 	
@@ -53,11 +48,7 @@ class AStar {
 		
 		try {
 			BufferedReader bruh = new BufferedReader(new FileReader(filename));
-			
-			
-			//Read input into data structure - priority queue first to save on sorting or arrayList then sort? Also do I even sort?
-			//Y'know what? For now we're gonna skip on the sorting idea and just go straight to making connections and calculating distances.
-			//That means an unsorted ArrayList for now
+
 			String line = bruh.readLine();
 			String[] values;
 			
@@ -98,35 +89,12 @@ class AStar {
 				
 				//I'm still going to assume that all stars have at most 2 decimal places (less will still work).
 				//	despite trap.csv having only integers raising my suspicions, they did say this was an option
-				//	So will *100 and convert to int. Worst case we lose some data. Or maybe best to throw an error?
+				//	So will *100 and convert to int. Worst case we lose some data/accuracy.
+				//I'm willing to make that sacrifice...
 				
-				//Just making do with what we're given:
+				//Blindly lose anything beyond 2 decimal places, convert to int
 				scaledX = Math.round(x*100);
 				scaledY = Math.round(y*100);
-				
-				/*	SEEMS TO ME THIS METHOD IS A BAD IDEA. Floats seem very inaccurate and often add a small amount (~5-6 decimal places down) when multiplied by 100.
-					So sure I could develop another method of checking decimals (just literally checking them before multiplying)
-					But I think the first option's better anyway.
-				//System.err.println(x);
-				//Throwing error if it has more than 2 dp:
-				x = x*100;
-				//System.err.println(x);
-				scaledX = (int)x;
-				if ( scaledX < x ) {
-					System.err.println("Input should only have a maximum of 2 decimal places");
-					System.err.println("Error occurred on line:" + lineCount);
-					return;}
-				
-				y = y*100;
-				scaledY = (int)y;
-				if ( scaledY < y ) {
-					System.err.println("Input should only have a maximum of 2 decimal placesYYY");
-					System.err.println("Error occurred on line:" + lineCount);
-					return;
-				}
-				*/
-				
-				//The third alternative of course is to use floats in the Star class and all calculations, but wouldn't that be less efficient?
 				
 				//Can't calculate the heuristic yet since we have to read in the destination star first				
 				
@@ -150,12 +118,16 @@ class AStar {
 			e.printStackTrace();
 		}
 		
-		//------------------------------------------
-		//Debug
-		System.out.println(stars.size());
+		//---------Stars fully inputted
 		
-		//We have all the stars so we might as well draw the graph now?
+		//Check for wrong input
+		if ( start_index >= stars.size() || end_index >= stars.size() ) {
+			System.err.println("start or end star is outside of the range of stars inputted.");
+			System.err.println("maximum index with this data: " + (stars.size() - 1));
+			return;
+		}
 		
+		//We have all the stars so we might as well draw the graph now
 		ArrayList<Point> dots = new ArrayList<Point>();
 		for (int i = 0; i < stars.size(); i++) {
 			Point newPoint = new Point(stars.get(i).x / 100, stars.get(i).y / 100);
@@ -164,13 +136,7 @@ class AStar {
 		
 		GUI gui = new GUI(dots, largestX, largestY);
 		
-		
-		
-		
 		//Create a structure to save distances in.
-			//I'm thinking if we do use a 2D array we could save the values twice, since saving something twice isn't that bad for time complexity and having to reorder
-			// parameters before accessing the array later on is (would require an if).
-		
 		double[][] distances = new double[stars.size()][stars.size()];
 		
 		//Calculate and store distances
@@ -213,32 +179,13 @@ class AStar {
 			}
 		}
 		
-		//Debug
-		/*
-		for (int[] innerArray : distances ) {
-			for ( int distance : innerArray ) {
-				System.err.print(distance + " ");
-			}
-			System.out.println("");
-		}
-		*/
-		/*
-		for (int i = 0; i < stars.size(); i++) {
-			System.err.println(stars.get(i).hValue);
-			for ( int j = 0; j < stars.size(); j++ ) {
-				//System.err.print(distance + ", ");
-				//System.err.print(i);
-			}
-			//System.out.println("");
-		}
-		*/
-		//-----------------------------------------------------------------
-		//-----------------------------------------------------------------
-		//-----------------------A Star Search-----------------------------
-		//-----------------------------------------------------------------
-		//-----------------------------------------------------------------
-		//-----------------------------------------------------------------
-		//-----------------------------------------------------------------
+		//-------------------------------------------------------------------------------------------------------------------------
+		//-------------------------------------------------------------------------------------------------------------------------
+		//-----------------------A Star Search-------------------------------------------------------------------------------------
+		//-------------------------------------------------------------------------------------------------------------------------
+		//-------------------------------------------------------------------------------------------------------------------------
+		//-------------------------------------------------------------------------------------------------------------------------
+		//-------------------------------------------------------------------------------------------------------------------------
 		
 		frontier = new PriorityQueue<Node>();
 		

@@ -10,7 +10,7 @@ public class GraphPanel extends JPanel {
 	ArrayList<Point> dots;
 	double largestX, largestY;
 	double scaleFactorX, scaleFactorY;
-	
+	//	- lines
 	ArrayList<Line2D> lines;
 	
 	Graphics2D guhuh;
@@ -19,9 +19,6 @@ public class GraphPanel extends JPanel {
 	public static final int GRAPH_HEIGHT = 400;
 	public static int star_size = 6;
 	public static int line_thickness = 4;
-	
-	//	- lines
-	//	- final path lines (should they even be separate? yes, but only if we do the during-runtime-display idea)
 	
 	//When created we could pass it some parameters, maybe star locations
 	public GraphPanel(ArrayList<Point> points, double _largestX, double _largestY) {
