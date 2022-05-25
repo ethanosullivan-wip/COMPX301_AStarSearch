@@ -1,6 +1,7 @@
 //I added a comment
 import java.io.*;
 import java.util.*;
+import java.awt.Point;
 //import java.lang.IllegalArgumentException;
 //Pretty sure IllegalArgumentException is an unchecked exception and doesn't have to be acknowledged or caught by this class.
 // Another reason not to import it is I could just catch it in a general catch block.
@@ -133,6 +134,23 @@ class AStar {
 			System.err.println("Debug info:");
 			e.printStackTrace();
 		}
+		
+		//------------------------------------------
+		//Debug
+		System.out.println(stars.size());
+		
+		//We have all the stars so we might as well draw the graph now?
+		
+		ArrayList<Point> dots = new ArrayList<Point>();
+		for (int i = 0; i < stars.size(); i++) {
+			Point newPoint = new Point(stars.get(i).x / 100, stars.get(i).y / 100);
+			dots.add(newPoint);
+		}
+		
+		TestGUI0 gui = new TestGUI0(dots);
+		
+		
+		
 		
 		//Create a structure to save distances in.
 			//I'm thinking if we do use a 2D array we could save the values twice, since saving something twice isn't that bad for time complexity and having to reorder
