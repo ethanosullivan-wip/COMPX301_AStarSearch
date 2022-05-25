@@ -11,7 +11,7 @@ public class GUI {
 		
 		ArrayList<Point> emptyPoints = new ArrayList<Point>();
 		
-		GUI gui = new GUI(emptyPoints);
+		GUI gui = new GUI(emptyPoints, 400, 400);
 		
 	}
 
@@ -19,7 +19,7 @@ public class GUI {
 		JOptionPane.showMessageDialog(null, "There is no path found");
 	}
 	
-	public GUI(ArrayList<Point> points) {
+	public GUI(ArrayList<Point> points, double largestX, double largestY) {
 		JFrame frame = new JFrame("This is my name :)");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400, 400);
@@ -32,7 +32,7 @@ public class GUI {
 		frame.setContentPane(everything);
 		//frame.getContentPane().add()...
 		
-		TestGraphPanel tgp = new TestGraphPanel(points);
+		GraphPanel tgp = new GraphPanel(points, largestX, largestY);
 		everything.add(tgp);
 		
 		JPanel emptyPanel = new JPanel();

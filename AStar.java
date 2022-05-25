@@ -30,6 +30,9 @@ class AStar {
 		double d;
 		PriorityQueue<Node> frontier; 
 		
+		double largestX = 0;
+		double largestY = 0;	//for graphing porpoises
+		
 		try {
 			start_index = Integer.parseInt(args[1]);
 			end_index = Integer.parseInt(args[2]);
@@ -57,6 +60,10 @@ class AStar {
 			//That means an unsorted ArrayList for now
 			String line = bruh.readLine();
 			String[] values;
+			
+			//largestX = 0;
+			//largestY = 0;	//Stores the largest values for graphing purposes
+			
 			int lineCount = 0;	//Indexed starting at 0. (this effects stars and error messages so far)
 			while (line != null) {
 				float x, y;
@@ -81,6 +88,14 @@ class AStar {
 					System.err.println("Error occurred on line:" + lineCount);
 					return;
 				}
+				
+				//Check if we've found a new largest X or Y:
+				if ( largestX < x )
+					largestX = x;
+				if ( largestY < y )
+					largestY = y;
+				
+				
 				//I'm still going to assume that all stars have at most 2 decimal places (less will still work).
 				//	despite trap.csv having only integers raising my suspicions, they did say this was an option
 				//	So will *100 and convert to int. Worst case we lose some data. Or maybe best to throw an error?
@@ -147,7 +162,7 @@ class AStar {
 			dots.add(newPoint);
 		}
 		
-		GUI gui = new GUI(dots);
+		GUI gui = new GUI(dots, largestX, largestY);
 		
 		
 		
