@@ -15,17 +15,33 @@ public class TestGraphPanel extends JPanel {
 	}
 	
 	public void setUpPanel() {
-		this.setBackground(Color.DarkGrey);
-		//Maybe preset the size of the window/panel?
+		this.setBackground(Color.CYAN);
+		this.setVisible(true);
+		//Maybe preset the size of the window/panel? That'd be the frame I want to set
+		//this.setMinimumSize(new Dimension(200, 200));
 		//Fill in star locations now?
 	}
 	
 	@Override
-	public void paintComponent(Graphics g) {	//pretty sure the system that calls this gives it the graphics object
-		super.paintComponent();
+	protected void paintComponent(Graphics g) {	//pretty sure the system that calls this gives it the graphics object
+		super.paintComponent(g);
 		
 		//Apparently the Graphics2D class is a good move?
 		Graphics2D guhuh = (Graphics2D) g;
+		
+		guhuh.setColor(Color.GREEN);
+		
+		int x1 = 50;
+		int y1 = 50;
+		int x2 = 550;
+		int y2 = 150;
+		
+		int width = 100;
+		int height = 100;
+		
+		guhuh.drawLine(x1, y1, x2, y2);
+		
+		guhuh.fillRect(x1+width, y1, width, height);
 	}
 	
 	
